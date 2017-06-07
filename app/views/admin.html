@@ -147,7 +147,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="user in displayedData" data-toggle="tooltip" title="{{user.id}} 已跑{{userDistance[idToString(user.id)]}}km 剩余km" ng-click="viewUser(user.id); setDisplayRecords(true)">
+                <tr ng-repeat="user in displayedData" data-toggle="tooltip" title="{{user.id}} 已跑{{user.current}}m 剩余{{user.target - user.current}}m" ng-click="viewUser(user.id); setDisplayRecords(true)">
                     <td>{{user.id}}</td>
                     <td>{{user.name}}</td>
                     <td ng-switch on="user.sex">
