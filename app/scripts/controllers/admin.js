@@ -38,7 +38,7 @@ angular.module('pkuRunnerApp')
         $scope.allCourses = [];
         $scope.allTeachers = [];
         $scope.userRecords = [];
-        $scope.userDistance = {};
+        // $scope.userDistance = {};
         $scope.idToString = function(id) {
             return String(id);
         };
@@ -72,11 +72,11 @@ angular.module('pkuRunnerApp')
                     // Add to total distance of user
                     // Only add if record is verified
                     if (records[i].verified) {
-                        if ($scope.userDistance.hasOwnProperty(userIdString)) {
-                            $scope.userDistance[userIdString] += records[i].distance;
+                        if ($scope.users[i].hasOwnProperty(current)) {
+                            $scope.users[i].current += records[i].distance;
                         }
                         else {
-                            $scope.userDistance[userIdString] = records[i].distance;
+                            $scope.users[i].current = records[i].distance;
                         }
                     }
                 }
@@ -111,6 +111,13 @@ angular.module('pkuRunnerApp')
                     }
                     if (users[i].teacher !== undefined) {
                         allTeachers.add(users[i].teacher);
+                    }
+                    users[i].current = 0;
+                    if (users[i].sex == 1) {
+                        users[i].target = 63000;
+                    }
+                    else {
+                        users[i].target = 42000;
                     }
                 }
 
