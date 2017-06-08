@@ -84,7 +84,14 @@ angular.module('pkuRunnerApp')
                 $scope.recordsSortByUser = recordsSortByUser;
                 $scope.recordTableReady = true;
                 
-        //get users after get records        
+            },
+            function (response) {
+                $scope.message = 'Error: ' + response.status + ' ' + response.statusText;
+                console.log($scope.message);
+            });
+        
+        $scope.userTableReady = false;
+        
         adminUserFactory.get().$promise.then(
             function (response) {
                 var users = response.data;
@@ -127,18 +134,6 @@ angular.module('pkuRunnerApp')
                 console.log($scope.messageB);
             }
         );
-                
-                
-                
-            },
-            function (response) {
-                $scope.message = 'Error: ' + response.status + ' ' + response.statusText;
-                console.log($scope.message);
-            });
-        
-        $scope.userTableReady = false;
-        
-        
 
         $scope.setDisplayUsers = function(show) {
             $scope.displayUsers = show;
